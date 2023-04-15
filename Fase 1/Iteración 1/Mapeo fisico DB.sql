@@ -124,7 +124,7 @@ id_especialidad INT NOT NULL,
 id_paciente INT NOT NULL,
 id_medico INT NOT NULL,
 precio DOUBLE NOT NULL,
-porcentaje_app INT NOT NULL,
+porcentaje_app DOUBLE NOT NULL,
 fecha_agendada DATETIME NOT NULL,
 fecha_creacion DATE NOT NULL,
 estado VARCHAR(30) NOT NULL,
@@ -167,7 +167,7 @@ CREATE TABLE solicitudes(
 id INT NOT NULL AUTO_INCREMENT,
 id_laboratorio INT NOT NULL,
 id_paciente INT NOT NULL,
-porcentaje_app INT NOT NULL,
+porcentaje_app DOUBLE NOT NULL,
 fecha_solicitada DATE NOT NULL,
 fecha_finalizada DATE,
 estado VARCHAR(30) NOT NULL,
@@ -199,4 +199,11 @@ FOREIGN KEY (id_examen)
 REFERENCES solicitudes(id)
 ON DELETE CASCADE
 ON UPDATE CASCADE
+);
+
+CREATE TABLE cobro_app(
+id INT NOT NULL,
+fecha_modificacion DATE NOT NULL,
+porcentaje DOUBLE NOT NULL,
+PRIMARY KEY (id)
 );
