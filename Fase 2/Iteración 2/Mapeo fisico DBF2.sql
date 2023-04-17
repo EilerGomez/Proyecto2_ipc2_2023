@@ -74,6 +74,7 @@ CREATE TABLE especialidades_medicos(
 id_especialidad INT NOT NULL,
 id_medico INT NOT NULL,
 precio DOUBLE NOT NULL,
+estado VARCHAR(30) NOT NULL,
 PRIMARY KEY (id_especialidad,id_medico),
 CONSTRAINT id_medico_especialidad_fk
 FOREIGN KEY(id_medico)
@@ -105,6 +106,7 @@ CREATE TABLE examenes_laboratorios(
 id_laboratorio INT NOT NULL,
 id_examen INT NOT NULL,
 precio DOUBLE NOT NULL,
+estado VARCHAR(30) NOT NULL,
 PRIMARY KEY (id_laboratorio, id_examen),
 CONSTRAINT id_laboratorio_examen_fk
 FOREIGN KEY (id_laboratorio)
