@@ -34,8 +34,8 @@ nombre VARCHAR(50) NOT NULL,
 username VARCHAR(50) NOT NULL,
 contrasenia VARCHAR(50) NOT NULL,
 direccion VARCHAR(50) NOT NULL,
-cui VARCHAR(15) NOT NULL,
-telefono VARCHAR(15) NOT NULL,
+cui INT NOT NULL,
+telefono INT NOT NULL,
 email VARCHAR(50) NOT NULL,
 fecha_nacimiento DATE NOT NULL,
 saldo DOUBLE NOT NULL,
@@ -48,8 +48,8 @@ nombre VARCHAR(50) NOT NULL,
 username VARCHAR(50) NOT NULL,
 contrasenia VARCHAR(50) NOT NULL,
 direccion VARCHAR(50) NOT NULL,
-cui VARCHAR(15) NOT NULL,
-telefono VARCHAR(15) NOT NULL,
+cui INT NOT NULL,
+telefono INT NOT NULL,
 email VARCHAR(50) NOT NULL,
 fecha_nacimiento DATE NOT NULL,
 saldo DOUBLE NOT NULL,
@@ -94,8 +94,8 @@ nombre VARCHAR(30) NOT NULL,
 username VARCHAR(50) NOT NULL,
 contrasenia VARCHAR(50) NOT NULL,
 direccion VARCHAR(40) NOT NULL,
-cui VARCHAR(15) NOT NULL,
-telefono VARCHAR(15) NOT NULL,
+cui INT NOT NULL,
+telefono INT NOT NULL,
 email VARCHAR(40) NOT NULL,
 fecha_fundacion DATE NOT NULL,
 saldo DOUBLE NOT NULL,
@@ -229,7 +229,7 @@ ON UPDATE CASCADE
 INSERT INTO administrador VALUES(1000, 'admin1', 'userAdmin1','21232f297a57a5a743894a0e4a801fc3', 'emailAdmin@gmail.com', '2000-01-03', 0);
 
 /*aqui empieza el mapeo físico de la creación del nuevo usuario*/
-CREATE USER 'proyecto2IPC2_2023'@'localhost' IDENTIFIED BY 'eiler123';
+/*CREATE USER 'proyecto2IPC2_2023'@'localhost' IDENTIFIED BY 'eiler123';*/
 GRANT SELECT ON centro_medico.* TO 'proyecto2IPC2_2023'@'localhost';
 GRANT DELETE ON centro_medico.* TO 'proyecto2IPC2_2023'@'localhost';
 GRANT UPDATE ON centro_medico.* TO 'proyecto2IPC2_2023'@'localhost';
@@ -237,3 +237,23 @@ GRANT INSERT ON centro_medico.* TO 'proyecto2IPC2_2023'@'localhost';
 /* EL PUERTO TIENE QUE SER: 3306*/
 
 USE centro_medico;
+
+select * from administrador;
+select * from especialidades;
+select * from examenes;
+/*insert into horarios_medicos (id_medico, hora_inicial, hora_final) values(2,'2:00', '4:30');*/
+select * from horarios_medicos;
+select * from especialidades_medicos;
+select * from medicos;
+select * from laboratorios;
+select * from examenes_laboratorios;
+select * from pacientes;
+select * from consultas;
+select * from examenes_consulta;
+select* from solicitudes;
+select * from examenes_solicitud;
+
+
+/*selects*/
+
+select * from administrador where username='admin1' and contrasenia = '7c6a180b36896a0a8c02787eeafb0e4c';
