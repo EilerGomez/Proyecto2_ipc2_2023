@@ -204,7 +204,7 @@ ON UPDATE CASCADE
 );
 
 CREATE TABLE cobro_app(
-id INT NOT NULL,
+id INT NOT NULL AUTO_INCREMENT,
 fecha_modificacion DATE NOT NULL,
 porcentaje DOUBLE NOT NULL,
 PRIMARY KEY (id)
@@ -249,11 +249,62 @@ select * from laboratorios;
 select * from examenes_laboratorios;
 select * from pacientes;
 select * from consultas;
-select * from examenes_consulta;
+select * from examenes_consulta; delete from examenes_consulta where id_examen = 123 and id_consulta=1;
 select* from solicitudes;
 select * from examenes_solicitud;
 
-
+update  consultas set fecha_creacion='2023-04-28' where id = 3;
 /*selects*/
 
 select * from administrador where username='admin1' and contrasenia = '7c6a180b36896a0a8c02787eeafb0e4c';
+
+/*para las especialidades de los medicos*/
+insert into especialidades values(125,'especialidad3','descripcion de la especialidad3');
+insert into especialidades_medicos values (125,124, 300, 'PENDIENTE');
+update especialidades_medicos set estado = 'PENDIENTE', precio=200 WHERE id_especialidad=123 and id_medico=124;
+
+/*para examenes laboratorio*/
+
+select el.id_laboratorio, el.id_examen, e.nombre, el.precio, el.estado from examenes_laboratorios el join examenes e on (el.id_examen = e.id);
+
+update examenes_laboratorios set estado = 'PENDIENTE' WHERE id_laboratorio = 123 and id_examen=123;
+
+/*para especialidades medicas*/
+select em.id_especialidad,em.id_medico, e.nombre, m.nombre, em.precio, em.estado from especialidades_medicos em join especialidades e on(em.id_especialidad=e.id) join medicos m on(m.id= em.id_medico);
+
+/*para cobro app*/
+
+select * from cobro_app;
+
+insert into cobro_app (fecha_modificacion, porcentaje) values('2023-04-21',0.41);
+
+/*para los horarrios
+*/
+select * from horarios_medicos;
+insert into horarios_medicos (id_medico,hora_inicial,hora_final) values();
+update horarios_medicos set hora_inicial = '08:30', hora_final ='12:30' where id_horario=1;
+
+delete from horarios_medicos where id_horario = 5;
+
+
+/*para consultas*/
+
+update consultas set estado ='PENDIENTE' WHERE 	id = 1;
+
+/*PARA ASIGNAR EXAMENES*/
+
+select * from examenes_consulta;
+insert into examenes_consulta values(125,1);
+select ec.id_examen, e.nombre, ec.id_consulta from examenes_consulta ec join examenes e on(e.id=ec.id_examen) and ec.id_consulta = 1;
+
+/*historialMedico*/
+select * from consultas where id_paciente = 123;
+select * from solicitudes where id_paciente =123;
+select es.id_examen,e.nombre, e.descripcion, es.precio from solicitudes s join examenes_solicitud es on(es.id_solicitud = s.id) join examenes e on(e.id=es.id_examen) where s.id_paciente=123;
+
+select p.nombre, count(c.id_paciente), sum(c.precio) from consultas c join pacientes p on(p.id = c.id_paciente) limit 5;
+/*reporte top 5 pacientes con mayor ingreso*/
+select p.nombre, count(p.id), sum(c.precio) from consultas c join pacientes p on(p.id = c.id_paciente) where c.fecha_creacion >= '2023-02-10' and  c.fecha_creacion <= '2023-04-10'  and c.id_medico=124 group by(p.id) having count(*)>=1 order by(sum(c.precio)) desc limit 5 ;
+
+/*top 5 especialidades con mayor ingresos*/
+select e.nombre, count(e.id), sum(c.precio) from consultas c join especialidades e on(e.id=c.id_especialidad) where c.fecha_creacion >= '2023-02-10' and  c.fecha_creacion <= '2023-04-10' and c.id_medico=124 group by(e.id) having count(*)>=1 order by(sum(c.precio)) desc limit 5;
