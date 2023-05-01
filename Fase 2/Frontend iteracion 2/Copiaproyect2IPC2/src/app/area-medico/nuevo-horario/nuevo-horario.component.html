@@ -1,0 +1,24 @@
+<div class="container mt-5 pt-5" style="background-color: rgb(141, 198, 255);">
+    <div class="row">
+        <div class="col">
+            <form (ngSubmit)="guardarHorarrio(horaEntrada.value, horaSalida.value)">
+                <div class="mb-3">
+                  <h5 for="exampleInputEmail1" class="form-label">Seleccione la hora de entrada:</h5>
+                  <input type="time" name="horaEntrada" #horaEntrada class="mr-4">
+                </div>
+                <div class="mb-3">
+                    <h5 for="exampleInputEmail1" class="form-label">Seleccione la hora de salida:</h5>
+                    <input type="time" name="horaEntrada" #horaSalida>
+                  </div>
+                <button type="submit" class="btn btn-primary col-sm-5">Guardar</button>
+              </form>
+              <br><br>
+        </div>
+        <div class="alert alert-primary" role="alert" *ngIf="mostrarExito">
+            Horario guardado con exito!
+        </div>
+        <div class="alert alert-danger" role="alert" *ngIf="mostrarError">
+           Usted tiene horarios traslapados!
+        </div>
+    </div>
+</div>

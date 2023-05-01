@@ -1,0 +1,70 @@
+<div class="container mt-5 pt-5">
+    <div class="card">
+        <div class="card-header">
+            <form (ngSubmit)="verExamenes(idPaciente.value);" #formidPaci="ngForm">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Ingrese el id del paciente</label>
+                    <input type="number" class="form-control" #idPaciente aria-describedby="emailHelp">
+                </div>
+                <button type="submit" class="btn btn-primary mt-2 me-4"
+                    [disabled]="!formidPaci.form.valid">Buscar</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" *ngIf="mostrarTablas">
+    <!--Tabla de las consultas-->
+    <div class="container mt-5 pt-5">
+        <div class="card">
+            <div class="card-header">
+                <h3>Consultas hechas por el paciente: {{idPaciente.value}}</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <th>IdConsulta</th>
+                        <th>Id paciente</th>
+                        <th>Id medico</th>
+                        <th>Precio</th>
+                        <th>Fecha creacion</th>
+                        <th>Estado</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let consulta of consultas; let i index">
+                            <td>{{consulta.idConsulta}}</td>
+                            <td>{{consulta.idPaciente}}</td>
+                            <td>{{consulta.idMedico}}</td>
+                            <td>{{consulta.precio}}</td>
+                            <td>{{consulta.fechaCreacion}}</td>
+                            <td>{{consulta.estado}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!--esta es la tabla de los examenes-->
+    <div class="container mt-5 pt-5">
+        <div class="card">
+            <div class="card-header">
+                <h3>Examenes hechos por el paciente: {{idPaciente.value}}</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Id paciente</th>
+                        <th>Id examen</th>
+                        <th>Nombre examen</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let examen of examenes; let i index">
+                            <td>{{idPaciente.value}}</td>
+                            <td>{{examen.id}}</td>
+                            <td>{{examen.nombre}}</td>
+                            <td>{{examen.descripcion}}</td>
+                            <td>{{examen.precio}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

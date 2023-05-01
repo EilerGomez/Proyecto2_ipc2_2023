@@ -1,0 +1,37 @@
+<div id="mayor">
+    <div id="cuadro">
+        <form id="form" #ngForm="ngForm">
+            <p id="titulo"> INICIAR SESION</p>
+            <hr>
+            <br /><br />
+            <label id="subtitulo1">USERNAME</label>
+            <br /><br />
+            <input type="text" #username class="entrada" required="requerido" value="" placeholder="Su username" />
+            <br /><br />
+            <label id="subtitulo2">CONTRASEÑA</label>
+            <br /><br />
+            <input type="password" #password class="entrada" required="requerido" placeholder="Su contraseña" />
+            <br /><br />
+            <label id="subtitulo3">AREA A LA QUE PERTENECE</label>
+            <select class="form-select" aria-label="Default select example" id="combo" #combo>
+                <option value="1">Administrador</option>
+                <option value="2">Medico</option>
+                <option value="3">Paciente</option>
+                <option value="4">Laboratorio</option>
+            </select>
+            <br /><br />
+
+            <button type="submit" class="btn btn-primary" name="boton" id="boton"
+                (click)="traerUsuario(username.value,password.value,combo.value)">Ingresar</button>
+        </form>
+
+        <br />
+        <p id="marca">NIKO CODE</p>
+    </div>
+    <div class="alert alert-danger mt-4" id="alerta" *ngIf="mostrarAlert; else nada">
+        USUARIO INVALIDO
+    </div>
+    <ng-template #nada>
+
+    </ng-template>
+</div>

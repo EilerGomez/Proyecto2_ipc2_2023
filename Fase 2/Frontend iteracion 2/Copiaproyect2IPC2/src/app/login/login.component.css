@@ -1,0 +1,85 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-size:  1950px;
+    /*background-image: url(src/assets/fondo.jpg);*/
+}
+#mayor{
+    width: 1900px;
+    background: #090909;
+    color:#ffffff;
+    margin:0px;
+    margin-top: 0px;
+    padding: 5px 0px 200px 5px;
+    border-top: 0px solid #141414;
+    border-left: 0px solid #141414;
+    border-right: 0px solid #141414;
+    border-radius: 6px;
+    opacity: 0.7;
+    background-image: url(src/assets/fondo.jpg)
+}
+#cuadro{
+    width: 400px;
+    background: #090909;
+    color:#ffffff;
+    margin:auto;
+    margin-top: 220px;
+    padding: 5px 5px 30px 5px;
+    border-top: 35px solid #141414;
+    border-left: 35px solid #141414;
+    border-right: 35px solid #141414;
+    border-radius: 6px;
+    opacity: 0.7;
+}
+#alerta{
+    width: 400px;
+    margin: auto;
+    height: 30px;
+}
+.entrada{
+    width: 320px;
+    height: 35px;
+    border-radius: 6px;
+    font-family: verdana;
+    font-weight: 900;
+}
+#boton{
+    width: 324px;
+    height: 45px;
+    border-radius: 6px;
+    background: blue;
+    color: white;
+    font-size: 15px;
+}
+#titulo{
+    font-size: 30px;
+    font-family: fantasy;
+}
+#subtitulo1{
+    padding-left: 80px;
+}
+#subtitulo2{
+    padding-left: 107px;
+}
+#subtitulo3{
+    padding-left: 55px;
+}
+#marca{
+    font-size: 20px;
+    padding-left: 165px;
+    font-weight: 900;   
+}
+#combo{
+    width: 324px;
+    height: 35px;
+    font-size: 15px;
+    font-family: verdana;
+    border-radius: 6px;
+    font-weight: 900;
+}
+#botonGuardarUsuario{
+    text-align: left;
+    width: 350px;
+}

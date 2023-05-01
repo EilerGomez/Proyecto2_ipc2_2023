@@ -1,0 +1,70 @@
+<div class="container mt-5 pt-5">
+    <div class="card">
+        <div class="card-header">
+            <h3>Tus Horarios</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <th>Id horario</th>
+                    <th>Id medico</th>
+                    <th>Hora entrada</th>
+                    <th>Hora salida</th>
+                    <th class="text-center">ACCIONES</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let horario of horarios">
+                        <td>{{horario.idHorario}}</td>
+                        <td>{{horario.idMedico}}</td>
+                        <td>{{horario.horaEntrada}}</td>
+                        <td>{{horario.horaSalida}}</td>
+                        <td class="text-center">
+                            <button class="btn btn-warning me-2 col-sm-5"
+                                (click)="EditarHorario(horario)">Editar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-2 col-md-4" *ngIf="mostrarEditar">
+    <div class="row">
+        <div class="col">
+            <div class="card my-4">
+                <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+                    <h3 class="mt-2 me-4">Editar horario</h3>
+                    <button class="btn btn-info" (click)="mostrarEditar=false">Ocultar esta tabla</button>
+                </nav>
+
+                <div class="card-body">
+                    <form (ngSubmit)="actualizarHorario(horaEntrada.value,horaSalida.value)" #especialidadForm="ngForm">
+
+
+                        <div class="form-group">
+                            <h4 for="name">Hora de entrada actual: </h4>
+                            <h4 for="name">{{horarioEdit.horaEntrada}}</h4><br>
+                            <h4 for="name">Ingresa nueva hora: </h4>
+                            <input type="time" name="horaEntrada" #horaEntrada value="{{horarioEdit.horaEntrada}}">
+                        </div><br>
+                        <div class="form-group">
+                            <h4 for="name">Hora de salida actual: </h4>
+                            <h4 for="name">{{horarioEdit.horaSalida}}</h4><br>
+                            <h4 for="name">Ingresa nueva hora: </h4>
+                            <input type="time" name="horaEntrada" #horaSalida value="{{horarioEdit.horaSalida}}">
+                        </div>
+                        <button routerLink="listarHorarios" type="submit" class="btn btn-success mt-2 me-4"
+                            [disabled]="!especialidadForm.form.valid">Actualizar Horario</button>
+
+                    </form>
+                    <br>
+                    <div class="alert alert-primary" role="alert" *ngIf="mostrarExito">
+                        Horario actualizado con exito!
+                    </div>
+                    <div class="alert alert-danger" role="alert" *ngIf="mostrarError">
+                       Usted tiene horarios traslapados!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

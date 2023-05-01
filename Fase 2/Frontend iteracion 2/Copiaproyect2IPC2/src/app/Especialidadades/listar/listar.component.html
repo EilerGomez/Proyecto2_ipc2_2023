@@ -1,0 +1,32 @@
+<div class="container mt-5 pt-5">
+    <div class="card">
+        <div class="card-header">
+            <h3>Especialidades solicitadas por medicos</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <th>IdEspecialidad</th>
+                    <th>idMedico</th>
+                    <th>Nombre Especialidad</th>
+                    <th>Nombre Medico</th>
+                    <th>Precio</th>
+                    <th>Estado</th>
+                    <th class="text-center">ACCIONES</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let especialidades1 of especialidades; let i index">
+                        <td>{{especialidades1.idEspecialidad}}</td>
+                        <td>{{especialidades1.idMedico}}</td>
+                        <td>{{especialidades1.nombreEspecialidad}}</td>
+                        <td>{{especialidades1.nombreMedico}}</td>
+                        <td>{{especialidades1.precio}}</td>
+                        <td>{{especialidades1.estado}}</td>
+                        <td class="text-center" *ngIf="especialidades1.estado=='PENDIENTE'">
+                            <button class="btn btn-warning me-2 col-sm-5" (click)="aceptarEsp(especialidades1)">Aceptar</button>
+                            <button class="btn btn-danger col-sm-5" (click)="recharzarEsp(especialidades1)">Rechazar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,79 @@
+<div class="container mt-2 col-md-4" *ngIf="mostrarEditar">
+    <div class="row">
+        <div class="col">
+            <div class="card my-4">
+                <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+                    <h3 class="mt-2 me-4">Editar Especialidad</h3>
+                    <button class="btn btn-info" (click)="mostrarEditar=false">Ocultar esta tabla</button>
+                </nav>
+
+                <div class="card-body">
+                    <form (ngSubmit)="actualizarEsp(especialidad,precio.value)" #especialidadForm="ngForm">
+                        <label for="name">Id especialiadad:</label>
+                        <input [(ngModel)]="especialidad.idEspecialidad" name="id" type="number" disabled required>
+                        <div class="form-group">
+                            <label for="name">Nombre especialidad:</label>
+                            <input [(ngModel)]="especialidad.nombreEspecialidad" type="text" class="form-control"
+                                name="name" required disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Nombre medico:</label>
+                            <input [(ngModel)]="especialidad.nombreMedico" type="text" class="form-control" name="age"
+                                required disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Precio:</label>
+                            <input [(ngModel)]="especialidad.precio" type="number" class="form-control" name="email"
+                                #precio required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Estado:</label>
+                            <input [(ngModel)]="especialidad.estado" type="text" class="form-control" name="password"
+                                required disabled>
+                        </div>
+                        <div class="d-flex justify-content-between"></div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success mt-2 me-4"
+                                [disabled]="!especialidadForm.form.valid">Actualizar Especialidad</button>
+                            <button type="reset" class="btn btn-danger mt-2">Limpiar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-5 pt-5">
+    <div class="card">
+        <div class="card-header">
+            <h3>Tus especialidades</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <th>IdEspecialidad</th>
+                    <th>Nombre Especialidad</th>
+                    <th>Nombre Medico</th>
+                    <th>Precio</th>
+                    <th>Estado</th>
+                    <th class="text-center">ACCIONES</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let especialidades1 of especialidades; let i index">
+                        <td>{{especialidades1.idEspecialidad}}</td>
+                        <td>{{especialidades1.nombreEspecialidad}}</td>
+                        <td>{{especialidades1.nombreMedico}}</td>
+                        <td>{{especialidades1.precio}}</td>
+                        <td>{{especialidades1.estado}}</td>
+                        <td>
+                            <button class="btn btn-warning me-2 col-sm-5"
+                                (click)="Editar(especialidades1)">Editar</button>
+                            <button class="btn btn-secondary me-2 col-sm-5" *ngIf="especialidades1.estado=='RECHAZADA'"
+                                (click)="Reenviar(especialidades1)">Reenviar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
