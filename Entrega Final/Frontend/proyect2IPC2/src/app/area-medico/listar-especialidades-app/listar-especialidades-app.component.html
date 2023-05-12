@@ -1,0 +1,20 @@
+<div class="container mt-5 pt-5" style="background-color: rgb(170, 173, 177);">
+    <form (ngSubmit)="solicitarEspecialidad(idEsp.value, precio.value)" #solcitarEspForm="ngForm">
+        <div class="label">
+            <label for="exampleInputPassword1" class="form-label" style="color: aliceblue;">Seleccione una especialidad</label>
+        </div>
+        <select class="form-select" aria-label="Default select example" #idEsp>             
+            
+                <option *ngFor="let especialidad of especialidades" value="{{especialidad.id}}">{{especialidad.nombre}}; {{especialidad.descripcion}}</option>                     
+            
+        </select>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label" style="color: aliceblue;">Ingrese el precio de la especialidad</label>
+            <input type="number" class="form-control" #precio name="precio" required placeholder="Ingrese el precio de la especialidad">
+        </div>
+        
+        <button type="submit" class="btn btn-primary col-sm-5"
+        [disabled]="!solcitarEspForm.form.valid">Solicitar</button>
+        <br><br>
+    </form>
+</div>

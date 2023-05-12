@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <!--Tabla de las consultas-->
+    <div class="container mt-5 pt-5">
+        <div class="card">
+            <div class="card-header" id="tabla">
+                <h3>Recargas hechas por el paciente: {{idpaciente}}</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Id</th>
+                        <th>Id paciente</th>
+                        <th>Monto</th>
+                        <th>Fecha </th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let recarga of recargas; let i index">
+                            <td>{{recarga.id}}</td>
+                            <td>{{recarga.idPaciente}}</td>
+                            <td>{{recarga.recarga}}</td>
+                            <td>{{recarga.fecha}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><br>
+        <button type="button" class="btn btn-warning" (click)="downloadPDF()">Descargar reporte</button>
+    </div>
+</div>

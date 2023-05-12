@@ -1,0 +1,28 @@
+<div class="container mt-5 pt-5">
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h3>TODAS LAS CONSULTAS</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <th>Id consulta</th>
+                    <th>Id paciente</th>
+                    <th>Precio</th>
+                    <th>Fecha creacion</th>
+                    <th>Fecha agendada</th>
+                    <th>Estado</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let consulta of consultas; let i index">
+                        <td>{{consulta.idConsulta}}</td>
+                        <td>{{consulta.idPaciente}}</td>
+                        <td>{{consulta.precio}}</td>
+                        <td>{{consulta.fechaCreacion}}</td>
+                        <td>{{consulta.fechaAgendada}}</td>
+                        <td>{{consulta.estado}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

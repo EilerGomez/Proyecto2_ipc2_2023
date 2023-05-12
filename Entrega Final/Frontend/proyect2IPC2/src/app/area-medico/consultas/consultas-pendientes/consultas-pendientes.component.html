@@ -1,0 +1,37 @@
+<div class="container mt-5 pt-5" *ngIf="MostrarFinalizarConsulta==false">
+    <div style="text-align: right; background-color: cadetblue;">
+        <label class="me-5" style="color: aliceblue;"> Ingrese la fecha:</label>
+        <input type="date" #fecha class="me-2" value="{{dia}}">
+        <button type="submit" class="btn btn-info" (click)="SeleccionarDia(fecha.value)">Seleccionar dia</button>
+    </div>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h3>CONSULTAS PENDIENTES</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <th>Id consulta</th>
+                    <th>Id paciente</th>
+                    <th>Precio</th>
+                    <th>Fecha creacion</th>
+                    <th>Fecha agendada</th>
+                    <th class="text-center">ACCIONES</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let consulta of consultas; let i index">
+                        <td>{{consulta.idConsulta}}</td>
+                        <td>{{consulta.idPaciente}}</td>
+                        <td>{{consulta.precio}}</td>
+                        <td>{{consulta.fechaCreacion}}</td>
+                        <td>{{consulta.fechaAgendada}}</td>
+                        <td class="text-center">
+                            <button class="btn btn-warning me-2 col-sm-5" (click)="EnviarAEditar(consulta)">Editar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<app-finalizar-consulta *ngIf="MostrarFinalizarConsulta" [consulta]="consultaEditar" (mostrarTabl)="NoMostrarFinalizar($event)"
+ (actualizarTabla)="ActualizarTabla()"></app-finalizar-consulta>

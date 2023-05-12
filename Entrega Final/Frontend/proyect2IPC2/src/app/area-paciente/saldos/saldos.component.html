@@ -1,0 +1,28 @@
+<div>
+    <div class="container mt-5 pt-5">
+        <div class="row">
+            <div class="col">
+                <div class="card my-4">
+                    <div class="card-body">
+                        <form #especialidadForm="ngForm">
+                            <h3>Tu saldo actual es de: {{saldoActual}}</h3><br>
+                            <div>
+                                <button class="btn btn-success me-2 col-sm-5" (click)="recargar()">Recargar</button>
+                            </div> <br><br>
+                            <div *ngIf="mostrarRecargar">
+                                <div class="card-body">
+                                    <input type="number" class="form-control" #salgoRecargar
+                                        aria-describedby="emailHelp" placeholder="Ingrese la cantidad a recargar">
+                                </div>
+                                <div>
+                                    <button class="btn btn-primary me-2 col-sm-5" (click)="guardarSaldo(salgoRecargar.value)">Guardar</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><br>

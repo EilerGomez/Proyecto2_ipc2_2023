@@ -1,0 +1,38 @@
+<div class="container mt-5 pt-5" style="background-color: rgb(170, 173, 177);">
+    <div class="row">
+        <div class="col">
+            <h2>Cargar datos</h2>
+            <form>
+                <div class="mb-3">
+                    <label for="jsonFile" class="form-label">Selecciona un archivo JSON</label>
+                    <input type="file" class="form-control" id="jsonFile" (change)="onFileSelected($event)" accept=".json">
+                </div>
+                <button [disabled]="botonActivo" type="button" class="btn btn-primary" (click)="sendJson()">Enviar</button>
+            </form>
+        </div>
+        <div class="alert alert-warning mt-4" *ngIf="openAlert; else mensaje">
+            <p>Se cargaran datos</p>
+        </div>
+        <ng-template #mensaje>
+            <div class="alert alert-primary mt-4">
+                Datos cargados correctamente
+            </div>
+        </ng-template>
+    </div>
+</div>
+<div *ngIf="mostrarErrores" class="container mt-5 pt-5" style="background-color: rgb(241, 244, 247);">
+    <h4>Errores que ha tenido en el archivo de entrada</h4>
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Descripcion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let error of errores, let i =index">
+            <td>{{i}}</td>
+            <td>{{error}}</td>
+          </tr>
+      </table>
+</div>

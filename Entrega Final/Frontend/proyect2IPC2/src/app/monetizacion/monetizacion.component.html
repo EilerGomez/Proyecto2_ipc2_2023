@@ -1,0 +1,15 @@
+<div class="container mt-5 pt-5" style="background-color: slategrey; margin: auto;">
+    <form>
+        <div class="mb-3">
+            <h3 for="exampleInputEmail1" class="form-label" style="color: aliceblue;">Porcentaje actual: {{cobroApp.porcentaje}}</h3>
+        </div>
+        <div class="mb-3">
+            <h4 for="exampleInputEmail1" class="form-label" style="color: aliceblue;">Edita la cantidad de cobro de la aplicacion</h4>
+        </div>
+        <div class="mb-3">
+            <h4 for="exampleInputPassword1" class="form-label"style="color: aliceblue;">Ingrese la nueva cantidad</h4>
+            <input type="number" class="form-control" #newCantidad placeholder="Ingrese la nueva cantidad" required="">
+        </div>
+        <button type="submit" routerLink="areaAdministrador/monetizacion" class="btn btn-primary mb-3 col-sm-5 mr-5" (click)="guardarPorcentaje(newCantidad.value)" style="text-align: center;">Guardar</button>
+    </form>
+</div>

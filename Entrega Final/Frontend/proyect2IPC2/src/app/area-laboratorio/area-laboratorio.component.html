@@ -1,0 +1,76 @@
+<!-- Topbar Start -->
+<div class="container-fluid bg-dark">
+    <div class="row py-2 px-lg-5">
+        <div class="col-lg-6 text-center text-lg-left mb-2 mb-lg-0">
+            <div class="d-inline-flex align-items-center text-white">
+                <small><i class="fa fa-phone-alt mr-2"></i>{{getPhone()}}</small>
+                <small class="px-3">|</small>
+                <small><i class="fa fa-envelope mr-2"></i>{{getEmail()}}</small>
+            </div>
+        </div>
+        <div class="col-lg-6 text-center text-lg-right">
+            <div class="d-inline-flex align-items-center">
+                <a class="text-white px-2" href="https://www.facebook.com/">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a class="text-white px-2" href="https://twitter.com/">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a class="text-white px-2" href="https://www.linkedin.com/">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a class="text-white px-2" href="https://www.instagram.com/">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a class="text-white pl-2" href="https://www.youtube.com/">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<app-espacio-laboratorio></app-espacio-laboratorio>
+<div class=" jumbotron position-relative overlay-bottom " style="margin-bottom: 0px; opacity: 0.7;">
+    <router-outlet></router-outlet>
+    <br><br><br><br><br><br>
+</div>
+<div class="container-fluid position-relative overlay-top bg-dark text-white-50 py-5" style="margin-top: 90px;">
+    <div class="container mt-5 pt-5">
+
+        <div class="row">
+            <div class="col-md-4 mb-5">
+                <h3 class="text-white mb-4">Contáctame</h3>
+                <p><i class="fa fa-map-marker-alt mr-2"></i>Cantinil, Huehuetenango</p>
+                <p><i class="fa fa-phone-alt mr-2"></i>+502 49737837</p>
+                <p><i class="fa fa-envelope mr-2"></i>gomezeiler250@gmail.com</p>
+                <div class="d-flex justify-content-start mt-4">
+                    <a class="text-white mr-4"
+                        href="https://www.facebook.com/eilerrigoberto.gomezfigueroa?mibextid=LQQJ4d"><i
+                            class="fab fa-2x fa-facebook-f"></i></a>
+                    <a class="text-white mr-4" href="https://www.youtube.com/channel/UCFSBu7eaGEl5j6MIUvXIAsQ"><i
+                            class="fab fa-2x fa-youtube"></i></a>
+                    <a class="text-white mr-4" href="https://www.instagram.com/eiler_g4/"><i
+                            class="fab fa-2x fa-instagram"></i></a>
+                    <a class="text-white mr-4" href="https://github.com/EilerGomez"><i
+                            class="fab fa-2x fa-github"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-5">
+                <h3 class="text-white mb-4">Links rápidos</h3>
+                <div class="d-flex flex-column justify-content-start">
+                    <a class="text-white-50 mb-2" href="areaLaboratorio/nuevaSolicitudExamen"><i class="fa fa-angle-right mr-2"></i>Nueva solicitud de examen</a>
+                    <a class="text-white-50 mb-2" href="areaLaboratorio/listarExamenesLab"><i class="fa fa-angle-right mr-2"></i>Editar examenes</a>
+                    <a class="text-white-50 mb-2" href="areaLaboratorio/listarSolicitudesPendientes"><i class="fa fa-angle-right mr-2"></i>Subir resultados de examenes</a>
+                    <a class="text-white-50" href="areaLaboratorio/saldoActualLab"><i class="fa fa-angle-right mr-2"></i>Ver saldo actual</a>
+                    <a class="text-white-50" href="areaLaboratorio/top5PacientesmayorIngresoReport"><i class="fa fa-angle-right mr-2"></i>Ver top 5 pacientes con mayor ingreso</a>
+                </div>
+            </div>
+            <div class="col-md-4 mb-5">
+                <h3 class="text-white mb-4"></h3><br><br><br>
+                <div class="d-flex flex-column justify-content-start">                    
+                    <a class="text-white-50" href="areaLaboratorio/top5ExamenesmayorIngresoReport"><i class="fa fa-angle-right mr-2"></i>Ver top 5 examenes con mayor ingreso</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

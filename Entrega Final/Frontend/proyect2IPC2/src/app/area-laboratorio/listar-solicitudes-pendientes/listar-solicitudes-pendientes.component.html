@@ -1,0 +1,43 @@
+<div *ngIf="mostrarAgregarResultados==false">
+    <div class="container mt-5 pt-5">
+        <div class="row">
+            <div class="col">
+                <div class="card my-4">
+                    <div class="card-body">
+                        <form #especialidadForm="ngForm">
+                            <h3>Solicitudes pendientes</h3><br>
+                            <div class="alert alert-warning" role="alert">
+                                selecciona una de las solicitudes para subir los resultados de los examenes
+                            </div><br>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <th>Id solicitud</th>
+                                    <th>Paciente</th>
+                                    <th>Laboratorio</th>
+                                    <th>Fecha solicitada</th>
+                                    <th>Estado</th>
+                                    <th>ACCIONES</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let solicitud of solicitudes; let i index">
+                                        <td>{{solicitud.idSolicitud}}</td>
+                                        <td>{{solicitud.idPaciente}}</td>
+                                        <td>{{solicitud.idLaboratorio}}</td>
+                                        <td>{{solicitud.fechaSolicitada}}</td>
+                                        <td>{{solicitud.estado}}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-success me-2 col-sm-5" (click)="Seleccionar(solicitud)">Seleccionar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><br>
+
+<app-resultados-solicitudes *ngIf="mostrarAgregarResultados" [solicitud]="solicitudEdit" (aceptar)="NoMostrarAgregarExamenes($event)"></app-resultados-solicitudes>

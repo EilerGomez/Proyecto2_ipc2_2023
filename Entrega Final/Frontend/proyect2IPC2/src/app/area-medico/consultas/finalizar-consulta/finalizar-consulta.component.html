@@ -1,0 +1,53 @@
+<div class="container mt-5 pt-5">
+    <div class="card">
+        <div class="card-header">
+            <form (ngSubmit)="FinalizarConsulta(informe.value)" #estudianteForm="ngForm">
+                <div class="form-group">
+                    <label for="name">Ingrese un informe sobre la consulta:</label>
+                    <input type="text" class="form-control" #informe required>
+                </div>
+
+                <div class="d-flex justify-content-between"></div>
+                <div>
+                    <button type="submit" class="btn btn-success mt-2 me-4" [disabled]="mostrarExito==true">Finalizar
+                        consulta</button>
+                    <a class="btn btn-danger mt-2 me-4" (click)="Volver()">Volver</a>
+                </div>
+            </form>
+            <div>
+                <h3>Examenes que contiene la consulta: {{consulta.idConsulta}}</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Id consulta</th>
+                        <th>Id examen</th>
+                        <th>Paciente</th>
+                        <th>Tipo</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let examen of examenesConsulta; let i index">
+                            <td>{{examen.idConsulta}}</td>
+                            <td>{{examen.idExamen}}</td>
+                            <td>{{examen.nombreExamen}}</td>
+                            <td>{{consulta.idPaciente}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <h4>Resultado de la consulta</h4>
+            <div style="text-align: left;">
+                <a type="submit" class="btn btn-primary mt-4 me-4 btn-lg"
+                    href="http://localhost:8084/forProject2IPC2_2023_war_exploded/ServletResultadoConsulta/{{consulta.idConsulta}}"
+                    target="_blank">Mostrar
+                    archivo</a>
+            </div>
+            <br>
+            <div class="alert alert-danger" role="alert" *ngIf="mostrarAlerta">
+                Debe ingresar un iforme
+            </div>
+            <div class="alert alert-primary" role="alert" *ngIf="mostrarExito">
+                Consulta marcada como finalizada
+            </div>
+        </div>
+    </div>
+</div>

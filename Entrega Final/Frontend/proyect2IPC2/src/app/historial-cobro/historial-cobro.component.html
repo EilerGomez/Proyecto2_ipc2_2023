@@ -1,0 +1,23 @@
+
+<div class="container mt-5 pt-5">
+    <div class="card">
+        <div class="card-header"  id="htmlData">
+            <h3>Historial de los porcentajes que ha tenido la aplicacion</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <th>Rango de fecha</th>
+                    <th>Porcentaje</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let cobro of cobroApp; let i =index">
+                        <td>{{cobro.fechaModificacion}} - {{cobroApp[i+1].fechaModificacion}}</td>
+                        <td>{{cobro.porcentaje}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>            
+        </div><br><br>
+        <button type="button" class="btn btn-secondary" (click)="downloadPDF()">Descargar reporte</button>
+    </div>
+
+</div>

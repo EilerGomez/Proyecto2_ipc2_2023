@@ -1,0 +1,43 @@
+<div *ngIf="!mostrarSubirResultados">
+    <div class="container mt-5 pt-5">
+        <div class="row">
+            <div class="col">
+                <div class="card my-4">
+                    <div class="card-body">
+                        <form #especialidadForm="ngForm">
+                            <h3>Consultas pendientes de examenes</h3><br>
+                            <div class="alert alert-warning" role="alert">
+                                selecciona una de las consultas para subir los resultados de examnes
+                            </div><br>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <th>Id consulta</th>
+                                    <th>Paciente</th>
+                                    <th>Precio</th>
+                                    <th>Fecha agendada</th>
+                                    <th>Estado</th>
+                                    <th>ACCIONES</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let consulta of consultas; let i index">
+                                        <td>{{consulta.idConsulta}}</td>
+                                        <td>{{consulta.idPaciente}}</td>
+                                        <td>{{consulta.precio}}</td>
+                                        <td>{{consulta.fechaAgendada}}</td>
+                                        <td>{{consulta.estado}}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-success me-2 col-sm-5" (click)="Seleccionar(consulta)">Subir</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><br>
+
+<app-resultados-examenes-consultas *ngIf="mostrarSubirResultados" (noMostrar)="NoMostrar($event)" [consulta]="consultaEdit"></app-resultados-examenes-consultas>

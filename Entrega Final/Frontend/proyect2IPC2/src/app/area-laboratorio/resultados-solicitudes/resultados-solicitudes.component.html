@@ -1,0 +1,58 @@
+<div class="container mt-5 pt-5">
+    <div class="card">
+        <div class="card-header">
+            <div class="container mt-5 pt-5" style="background-color: rgb(170, 173, 177);">
+                <div class="container mt-5 pt-5">
+                    <div class="row">
+                        <div class="col">
+                            <h2>Agregue los resultados de estos examenes</h2>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="json-file" class="form-label">Seleccionar archivo PDF</label>
+                                    <input type="file" class="form-control" id="archivoEntrada" name="archivoEntrada"
+                                        (change)="onFileChange($event)" accept=".pdf">
+                                </div>
+                                <button type="button" class="btn btn-primary" (click)="uploadJson()"
+                                    [disabled]="mostrarBoton==false">Agregar</button>
+                            </form>
+                            <br>
+                            <div class="alert alert-primary" role="alert" *ngIf="mostrarBoton2">
+                               Se han guardado los resultados correctamente
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+
+            <h4>Examenes de la solicitud: {{solicitud.idSolicitud}}</h4>
+
+            <br>
+            <table class="table table-bordered">
+                <thead>
+                    <th>Id consulta</th>
+                    <th>Id examen</th>
+                    <th>Nombre examen</th>
+                    <th>Paciente</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let examen of examenesSolicitud; let i index">
+                        <td>{{examen.idSolicitud}}</td>
+                        <td>{{examen.idExamen}}</td>
+                        <td>{{examen.nombreExamen}}</td>
+                        <td>{{solicitud.idPaciente}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-between"></div>
+            <div style="text-align: right;">
+                <button type="submit" class="btn btn-success mt-4 me-4 btn-lg" (click)="Aceptar()">Aceptar</button>
+            </div>
+        </div>
+    </div><br>
+
+    <div style="text-align: right;">
+        <a type="submit" class="btn btn-primary mt-4 me-4 btn-lg"
+            href="http://localhost:8084/forProject2IPC2_2023_war_exploded/ServletResultadosSolicitud/{{solicitud.idSolicitud}}" target="_blank">Mostrar
+            archivo</a>
+    </div>
+</div>

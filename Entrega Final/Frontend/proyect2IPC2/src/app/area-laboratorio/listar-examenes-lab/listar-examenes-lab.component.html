@@ -1,0 +1,77 @@
+<div class="container mt-2 col-md-4" *ngIf="mostrarEditar">
+    <div class="row">
+        <div class="col">
+            <div class="card my-4">
+                <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+                    <h3 class="mt-2 me-4">Editar Especialidad</h3>
+                    <button class="btn btn-info" (click)="mostrarEditar=false">Ocultar esta tabla</button>
+                </nav>
+
+                <div class="card-body">
+                    <form (ngSubmit)="actualizarExamen(examenEdit,precio.value)" #especialidadForm="ngForm">
+                        <label for="name">Id examen:</label>
+                        <input [(ngModel)]="examenEdit.idExamen" name="id" type="number" disabled required>
+                        <div class="form-group">
+                            <label for="name">Nombre examen:</label>
+                            <input [(ngModel)]="examenEdit.nombreExamen" type="text" class="form-control"
+                                name="name" required disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Id lab:</label>
+                            <input [(ngModel)]="examenEdit.idLaboratorio" type="text" class="form-control" name="age"
+                                required disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Precio:</label>
+                            <input [(ngModel)]="examenEdit.precio" type="number" class="form-control" name="email"
+                                #precio required>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Estado:</label>
+                            <input [(ngModel)]="examenEdit.estado" type="text" class="form-control" name="password"
+                                required disabled>
+                        </div>
+                        <div class="d-flex justify-content-between"></div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-success mt-2 me-4"
+                                [disabled]="!especialidadForm.form.valid">Actualizar Especialidad</button>
+                            <button type="reset" class="btn btn-danger mt-2">Limpiar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 pt-5">
+    <div class="card">
+        <div class="card-header">
+            <h3>Examenes solicitados por laboratorios</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <th>ID EXAMEN</th>
+                    <th>ID LABORATORIO</th>
+                    <th>NOMBRE EXAMEN</th>
+                    <th>PRECIO</th>
+                    <th>ESTADO</th>
+                    <th class="text-center">ACCIONES</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let examenes1 of examenes; let i index">
+                        <td>{{examenes1.idLaboratorio}}</td>
+                        <td>{{examenes1.idExamen}}</td>
+                        <td>{{examenes1.nombreExamen}}</td>
+                        <td>{{examenes1.precio}}</td>
+                        <td>{{examenes1.estado}}</td>
+                        <td class="text-center">
+                            <button class="btn btn-success me-2 col-sm-5" (click)="Editar(examenes1)">Editar</button>
+                            <button class="btn btn-secondary me-2 col-sm-5" *ngIf="examenes1.estado=='RECHAZADA'"
+                            (click)="Reenviar(examenes1)">Reenviar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

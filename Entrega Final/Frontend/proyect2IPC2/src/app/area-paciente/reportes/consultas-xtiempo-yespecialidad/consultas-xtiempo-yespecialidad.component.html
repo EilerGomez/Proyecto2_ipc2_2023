@@ -1,0 +1,59 @@
+<div class="container mt-5 pt-5">
+    <div class="card">
+        <div class="card-header">
+            <form #formidPaci="ngForm">
+                <div class="mb-3">
+                    <h3 for="exampleInputEmail1" class="form-label">Ingrese un rango de fecha para ver las consultas
+                    </h3>
+                    <div class="mb-3">
+                        <h4>Ingrese la fecha desde</h4>
+                        <input type="date" #desde>
+                    </div>
+                    <div class="mb-3">
+                        <h4>Ingrese la fecha hasta</h4>
+                        <input type="date" #hasta>
+                    </div>
+                    <h3 for="exampleInputEmail1" class="form-label">Seleccione una especialidad</h3>
+                    <select class="form-select" aria-label="Default select example" #idEspecialidad>
+                        <option *ngFor="let especialidad of especialdiades" value="{{especialidad.id}}">
+                            {{especialidad.nombre}}</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary mt-2 me-4"
+                    (click)="verConsultas(desde.value, hasta.value, idEspecialidad.value)">Buscar</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container-fluid" *ngIf="mostrarTabla">
+    <!--Tabla de las consultas-->
+    <div class="container mt-5 pt-5">
+        <div class="card">
+            <div class="card-header" id="tabla">
+                <h3>Consultas hechas por el paciente: {{idpaciente}} desde: {{desde.value}}, hasta: {{hasta.value}}</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <th>IdConsulta</th>
+                        <th>Id paciente</th>
+                        <th>Id medico</th>
+                        <th>Precio</th>
+                        <th>Fecha creacion</th>
+                        <th>Estado</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let consulta of consultas; let i index">
+                            <td>{{consulta.idConsulta}}</td>
+                            <td>{{consulta.idPaciente}}</td>
+                            <td>{{consulta.idMedico}}</td>
+                            <td>{{consulta.precio}}</td>
+                            <td>{{consulta.fechaCreacion}}</td>
+                            <td>{{consulta.estado}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><br>
+        <button type="button" class="btn btn-warning" (click)="downloadPDF()">Descargar reporte</button>
+
+    </div>
+</div>

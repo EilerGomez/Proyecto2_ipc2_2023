@@ -1,0 +1,60 @@
+<div *ngIf="mostrarAgregarExamenes==false">
+
+    <div class="container mt-5 pt-5" >
+        <div class="row">
+            <div class="col">
+                <div class="card my-4">
+                    <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+                        <h3 class="mt-2 me-4">Ingrese el nombre del laboratorio donde quiere hacer sus examenes</h3>                        
+                    </nav>
+    
+                    <div class="card-body">
+                        <form #especialidadForm="ngForm" (ngSubmit)="buscar(nombrelaboratorio.value)">
+                            <div class="form-group">
+                                <label for="name">O ingrese el nombre del medico:</label>
+                                <input type="text" class="form-control" name="age" #nombrelaboratorio placeholder="Ingrese la palabra todos si quiere listar todos los laboratorios"
+                                    required>
+                            </div>
+                            <button type="reset" class="btn btn-danger mt-2">Limpiar</button>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success mt-4 me-4 col-sm-5"
+                                    >Buscar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="container mt-5 pt-5">
+        <div class="card">
+            <div class="card-header">
+                <h3>Medicos:</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Id laboratorio</th>
+                        <th>Nombre</th>
+                        <th>Direccion</th>
+                        <th>Telefono</th>
+                        <th class="text-center">ACCIONES</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let lab of laboratorios; let i index">
+                            <td>{{lab.idUsuario}}</td>
+                            <td>{{lab.nombre}}</td>
+                            <td>{{lab.direccion}}</td>
+                            <td>{{lab.telefono}}</td>
+                            <td class="text-center">
+                                <button class="btn btn-success me-2 col-sm-5" (click)="SeleccionarMedico(lab)">Seleccionar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<app-agregar-examenes-a-solicitud *ngIf="mostrarAgregarExamenes==true" [laboratorio]="laboratorioAAgregar"
+(mostrarAgregarExamen)="recibirEvento($event)"></app-agregar-examenes-a-solicitud>

@@ -247,11 +247,15 @@ select * from especialidades_medicos;
 select * from medicos;
 select * from laboratorios;
 select * from examenes_laboratorios;
-select * from pacientes;
+select * from pacientes WHERE id=123;
 select * from consultas;
-select * from examenes_consulta; delete from examenes_consulta where id_examen = 123 and id_consulta=1;
+select * from examenes_consulta; delete from examenes_laboratorios where id_examen = 123 and id_laboratorio=123;
 select* from solicitudes;
 select * from examenes_solicitud;
+select es.id_solicitud, es.id_examen, es.precio, e.nombre from examenes_solicitud es join examenes e on(es.id_examen = e.id);
+
+insert into solicitudes (id_laboratorio, id_paciente, porcentaje_app, fecha_solicitada, estado) values (123,123,0.04,'2023-5-1','PENDIENTE');
+insert into examenes_solicitud values(45,123,80);
 
 update  consultas set fecha_creacion='2023-04-28' where id = 3;
 /*selects*/
@@ -307,4 +311,82 @@ select p.nombre, count(c.id_paciente), sum(c.precio) from consultas c join pacie
 select p.nombre, count(p.id), sum(c.precio) from consultas c join pacientes p on(p.id = c.id_paciente) where c.fecha_creacion >= '2023-02-10' and  c.fecha_creacion <= '2023-04-10'  and c.id_medico=124 group by(p.id) having count(*)>=1 order by(sum(c.precio)) desc limit 5 ;
 
 /*top 5 especialidades con mayor ingresos*/
+select p.nombre, count(p.id), sum(c.precio) from examenes_solicitud c join pacientes p on(p.id = c.id_paciente) join solicitudes s where s.fecha_solicitada >= '2023-02-10' and  s.fecha_solicitada <= '2023-05-10'  and s.id_laboratorio=124 group by(p.id) having count(*)>=1 order by(sum(c.precio)) desc limit 5 ;
+
+/**/
 select e.nombre, count(e.id), sum(c.precio) from consultas c join especialidades e on(e.id=c.id_especialidad) where c.fecha_creacion >= '2023-02-10' and  c.fecha_creacion <= '2023-04-10' and c.id_medico=124 group by(e.id) having count(*)>=1 order by(sum(c.precio)) desc limit 5;
+
+/*top 5 pacientes con mayor ingreso*/
+/*para el paciente*/
+
+
+select em.id_especialidad, em.id_medico, m.nombre, m.direccion, m.telefono from especialidades_medicos em join medicos m on(em.id_medico=m.id);
+
+select * from cobro_app;
+
+insert into consultas (id_especialidad, id_paciente, id_medico, precio, porcentaje_app, fecha_agendada, fecha_creacion, estado, informe) values (123,124,123,170,0.04,'2023-05-01 13:50:00', '2023-04-29','EXAMEN_PENDIENTE','no se sabe'); /*guardar una nueva consulta*/
+
+select * from consultas;
+
+select el.id_laboratorio, el.id_examen, e.nombre, el.precio, el.estado from examenes_laboratorios el join examenes e on(e.id=el.id_examen);
+
+
+/*pARA CREAR SOLICITUDES*/
+
+select * from medicos;
+
+update administrador set saldo = saldo+12;
+
+update medicos set saldo = saldo +12 where id = 124;
+
+/*historial medico de un paciente*/
+select * from consultas where id_paciente = 123 and fecha_creacion >= '2023-2-1' and fecha_creacion<='2023-5-10';
+select es.id_examen,e.nombre, e.descripcion, es.precio from solicitudes s join examenes_solicitud es on(es.id_solicitud = s.id) join examenes e on(e.id=es.id_examen) where s.id_paciente=123 and s.fecha_solicitada>='2023-01-10'
+and fecha_solicitada<='2023-05-10';
+
+/*recargar saldo paciente*/
+select * from pacientes;
+update pacientes set saldo = saldo +10 where id=123;
+insert into recargas (id_paciente, recarga,fecha_realizada) values(123,10,'2023-5-2');
+
+select * from recargas;
+
+select * from examenes_solicitud;
+select * from examenes;
+select es.id_examen, s.id_paciente,e.tipo, s.fecha_solicitada from solicitudes s join examenes_solicitud es on(s.id=es.id_solicitud) join examenes e on(e.id=es.id_examen)  where s.id_paciente=123;
+
+select * from examenes_laboratorios;
+
+insert into examenes_laboratorios values(123,125,80,'PENDIENTE');
+
+update solicitudes set fecha_finalizada = null, estado = 'PENDIENTE' WHERE id = 46;
+select * from solicitudes;
+
+
+/*reportes del laboratorio top 5 pacientes con mayor ingreso*/
+select p.nombre, count(p.id), sum(es.precio) from solicitudes s join examenes_solicitud es on(s.id=es.id_solicitud) join pacientes p on(p.id=s.id_paciente) where s.fecha_solicitada >= '2023-02-10' and  s.fecha_solicitada <= '2023-05-10'  and s.id_laboratorio=124 group by(p.id) having count(*)>=1 order by(sum(es.precio)) desc limit 5 ;
+/*top 5 examenes con mayor ingreso*/
+select e.nombre, count(e.id), sum(es.precio) from solicitudes s join examenes_solicitud es on(s.id=es.id_solicitud) join examenes e on(e.id=es.id_examen) where s.fecha_solicitada >= '2023-02-10' and  s.fecha_solicitada <= '2023-05-10'  and s.id_laboratorio=123 group by(e.id) having count(*)>=1 order by(sum(es.precio)) desc limit 5 ;
+select e.nombre, count(e.id), sum(es.precio) from  examenes_solicitud es join examenes e on(e.id=es.id_examen) join solicitudes s on(s.id=es.id_solicitud) where s.id_laboratorio=124;
+
+/*buscar medicos*/
+select * from medicos m join especialidades_medicos em on(m.id=em.id_medico) where em.id_especialidad = 123 and em.estado='ACEPTADA';
+
+select * from consultas where fecha_agendada='2023-03-06';
+
+
+select * from pacientes;
+update pacientes set saldo=1000 where id=123;
+
+SELECT  max(id) as maximo from solicitudes where id_paciente=123;
+select * from examenes_solicitud;
+
+
+
+/*sobre resultados de solicitudes*/
+insert into resultados_solicitudes values(45,null);
+
+delete from resultados_solicitudes where id_solicitud=45;
+
+select * from resultados_solicitudes;
+select * from resultados_consultas;

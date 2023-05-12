@@ -1,0 +1,37 @@
+<div class="container mt-5 pt-5">
+    <div class="card">
+        <div class="card-header">
+            <h4>Examenes para la consulta: {{consulta.idConsulta}}</h4>
+            <form (ngSubmit)="agregarExamen(idExamen.value)" #estudianteForm="ngForm">
+                <div class="form-group">
+                    <label for="name">Seleccione un examen para agregar a la consulta:</label>
+                    <select class="form-select form-select-lg mb-2" #idExamen>
+                        <option *ngFor="let examen of examenesApp" value="{{examen.id}}">{{examen.nombre}}</option>
+                    </select>
+                    <div style="text-align: right;">
+                        <button type="submit" class="btn btn-primary mt-2 me-4">Agregar examen</button>
+                    </div>
+                </div>
+            </form>
+            <br>
+            <table class="table table-bordered">
+                <thead>
+                    <th>Id consulta</th>
+                    <th>Id examen</th>
+                    <th>Nombre examen</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let examen of examenesConsulta; let i index">
+                        <td>{{examen.idConsulta}}</td>
+                        <td>{{examen.idExamen}}</td>
+                        <td>{{examen.nombreExamen}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-between"></div>
+            <div style="text-align: right;">
+                <button type="submit" class="btn btn-success mt-4 me-4 btn-lg" (click)="Guardar()">Guardar y salir</button>
+            </div>
+        </div>
+    </div>
+</div>

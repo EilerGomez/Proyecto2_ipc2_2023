@@ -1,0 +1,67 @@
+<div *ngIf="mostrarguardarConsulta==false
+">
+
+    <div class="container mt-5 pt-5" >
+        <div class="row">
+            <div class="col">
+                <div class="card my-4">
+                    <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0 px-lg-5">
+                        <h3 class="mt-2 me-4">Seleccione la especialidad o ingrese el nombre del medico que desea consultar</h3>
+                        <div class="alert alert-warning mt-4" role="alert">
+                            Si ingresas el nombre, el medico se buscara por el nombre
+                        </div>
+                    </nav>
+    
+                    <div class="card-body">
+                        <form #especialidadForm="ngForm" (ngSubmit)="buscar(nombreMedico.value, idEsp.value)">
+                            <label for="especialdiad">Seleccione una especialidad</label>
+                            <select class="form-select" aria-label="Default select example" #idEsp>
+                                <option *ngFor="let esp of especialidades" value="{{esp.id}}">{{esp.nombre}}</option>
+                              </select>
+                            <div class="form-group">
+                                <label for="name">O ingrese el nombre del medico:</label>
+                                <input type="text" class="form-control" name="age" #nombreMedico
+                                    required>
+                            </div>
+                            <button type="reset" class="btn btn-danger mt-2">Limpiar</button>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-success mt-4 me-4 col-sm-5"
+                                    >Buscar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="container mt-5 pt-5">
+        <div class="card">
+            <div class="card-header">
+                <h3>Medicos:</h3>
+                <table class="table table-bordered">
+                    <thead>
+                        <th>Id Medico</th>
+                        <th>Nombre</th>
+                        <th>Direccion</th>
+                        <th>Telefono</th>
+                        <th class="text-center">ACCIONES</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let medico of medicos; let i index">
+                            <td>{{medico.idUsuario}}</td>
+                            <td>{{medico.nombre}}</td>
+                            <td>{{medico.direccion}}</td>
+                            <td>{{medico.telefono}}</td>
+                            <td class="text-center">
+                                <button class="btn btn-success me-2 col-sm-5" (click)="SeleccionarMedico(medico)">Seleccionar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<app-guardar-consulta [medico]="medicoEdit" *ngIf="mostrarguardarConsulta==true" [idEspecialidad]="idEsp"></app-guardar-consulta>

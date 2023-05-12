@@ -1,0 +1,30 @@
+<div class="container mt-5 pt-5">
+    <div class="card">
+        <div class="card-header">
+            <h3>Examenes solicitados por laboratorios</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <th>ID EXAMEN</th>
+                    <th>ID LABORATORIO</th>
+                    <th>NOMBRE EXAMEN</th>
+                    <th>PRECIO</th>
+                    <th>ESTADO</th>
+                    <th class="text-center">ACCIONES</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let examenes1 of examenes; let i index">
+                        <td>{{examenes1.idLaboratorio}}</td>
+                        <td>{{examenes1.idExamen}}</td>
+                        <td>{{examenes1.nombreExamen}}</td>
+                        <td>{{examenes1.precio}}</td>
+                        <td>{{examenes1.estado}}</td>
+                        <td class="text-center" *ngIf="examenes1.estado=='PENDIENTE'">
+                            <button class="btn btn-warning me-2 col-sm-5" (click)="aceptarExm(examenes1)">Aceptar</button>
+                            <button class="btn btn-danger col-sm-5" (click)="recharzarExm(examenes1)">Rechazar</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

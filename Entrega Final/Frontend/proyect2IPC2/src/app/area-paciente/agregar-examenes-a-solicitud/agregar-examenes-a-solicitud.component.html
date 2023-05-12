@@ -1,0 +1,60 @@
+<div>
+
+    <div class="container mt-5 pt-5">
+        <div class="row">
+            <div class="col">
+                <div class="card my-4">
+                    <div class="card-body">
+                        <button class="btn btn-danger me-2 col-sm-2" (click)="Volver()">Volver</button>
+                        <form #especialidadForm="ngForm">
+                            <h2 for="especialdiad">Examenes que se encuentran en laboratorio: {{laboratorio.idUsuario}}
+                            </h2><br>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <th>idExamen</th>
+                                    <th>Tipo</th>
+                                    <th>Seleccionar</th>
+                                   
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let examen of exameneslab; let i index">
+                                        <td>{{examen.idExamen}}</td>
+                                        <td>{{examen.nombreExamen}}</td>
+                                        <td class="text-center">
+                                            <button class="btn btn-success me-2 col-sm-5" (click)="agregarExamenesSolicitud(examen)">Seleccionar</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table><br><br>
+                            <h3>Examenes que has agregado a la solicitud: {{idNuevaSolicitud}}</h3>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <th>idExamen</th>
+                                    <th>Tipo</th>
+                                    <th>Laboratorio</th>
+                                    <th>Precio</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let examen of examenesSolicitud; let i index">
+                                        <td>{{examen.idExamen}}</td>
+                                        <td>{{examen.nombreExamen}}</td>
+                                        <td>{{laboratorio.idUsuario}}</td>
+                                        <td>{{examen.precio}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                        <div style="text-align: right;">
+                            <button class="btn btn-primary me-2 col-sm-5" (click)="Volver()">Guardar y salir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><br>
+
+<div class="alert alert-danger" role="alert" *ngIf="mostrarAletra==true">
+    Te has quedado sin dinero por favor recarga
+</div>

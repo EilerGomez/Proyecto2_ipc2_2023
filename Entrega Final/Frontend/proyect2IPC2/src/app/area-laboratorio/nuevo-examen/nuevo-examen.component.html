@@ -1,0 +1,27 @@
+<div class="container mt-5 pt-5" style="background-color: rgb(65, 73, 84);">
+    <form #solcitarEspForm="ngForm">
+        <div class="label">
+            <label for="exampleInputPassword1" class="form-label" style="color: aliceblue;">Seleccione un examen para
+                solicitar</label>
+        </div>
+        <select class="form-select" aria-label="Default select example" #idExamen>
+
+            <option *ngFor="let examen of examenes" value="{{examen.id}}">{{examen.nombre}}; {{examen.descripcion}}
+            </option>
+
+        </select>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label" style="color: aliceblue;">Ingrese el precio del
+                examen</label>
+            <input type="number" class="form-control" #precio required placeholder="Ingrese el precio del examen">
+        </div>
+
+        <button type="submit" class="btn btn-primary col-sm-5" [disabled]="!solcitarEspForm.form.valid"
+            (click)="solicitarExamen(idExamen.value, precio.value)">Solicitar</button>
+        <br><br>
+    </form>
+
+    <div class="alert alert-danger" role="alert" *ngIf="mostrarAletar">
+        Debe ingresar un precio no sea estupido!!!!!!!!!!!!!!!!!!
+    </div><br>
+</div>

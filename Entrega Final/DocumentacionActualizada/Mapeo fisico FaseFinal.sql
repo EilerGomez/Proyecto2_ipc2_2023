@@ -223,6 +223,28 @@ ON DELETE CASCADE
 ON UPDATE CASCADE
 );
 
+CREATE TABLE resultados_solicitudes(
+id_solicitud INT NOT NULL,
+archivo_pdf MEDIUMBLOB,
+PRIMARY KEY(id_solicitud),
+CONSTRAINT id_solicitud_resultados_fk
+FOREIGN KEY (id_solicitud)
+REFERENCES solicitudes(id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+CREATE TABLE resultados_consultas(
+id_consulta INT NOT NULL,
+archivo_pdf MEDIUMBLOB,
+PRIMARY KEY(id_consulta),
+CONSTRAINT id_consulta_resultados_fk
+FOREIGN KEY (id_consulta)
+REFERENCES consultas(id)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
 
 /*usuario por defecto del sistema*/
 /*username: userAdmin1, password: admin*/
